@@ -1,6 +1,6 @@
 import g4p_controls.*;
 GPanel pnlEnt;
-GButton btnEmetirTicke;
+GButton btnEmitirTicke;
 
 class Eentrada{
   private Texts txt;
@@ -12,13 +12,13 @@ class Eentrada{
     this.tIVParkingDB = tIVParkingDB;
     txt = new Texts();
 
-    btnEmetirTicke = new GButton(tIVParkingDB,0,0,100,50,
-      txt.btnEmetirTicke);
-    btnEmetirTicke.fireAllEvents(true);
+    btnEmitirTicke = new GButton(tIVParkingDB,0,0,100,50,
+      txt.btnEmitirTicke);
+    btnEmitirTicke.fireAllEvents(true);
 
     pnlEnt = new GPanel(tIVParkingDB,20,30,160, 140,
       txt.titleEnt);
-    pnlEnt.addControl(btnEmetirTicke, 30, 50);
+    pnlEnt.addControl(btnEmitirTicke, 30, 50);
     pnlEnt.setCollapsed(false);
 
   }

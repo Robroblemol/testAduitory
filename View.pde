@@ -31,4 +31,15 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("btnPagoTpa");
     tpa.setlb(lbDateInit,"btnPagoTpa");
   }
+  if(button == btnEmitirTicke && event == GEvent.PRESSED){
+    println("btnEmitirTicke");
+  }
+  if(button == btnEmitirTpm && event == GEvent.PRESSED){
+    println("btnEmitirTpm");
+  }
+  if(button == btnPagoTpm && event == GEvent.PRESSED){
+    println("btnPagoTpm");
+  }
+
+
  }

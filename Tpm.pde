@@ -18,7 +18,7 @@ class Tpm{
     selecPlateTpm.setItems(plts,0);
 
     btnEmitirTpm = new GButton(tIVParkingDB,0,0,100,25,
-      txt.btnEmetirTicke);
+      txt.btnEmitirTicke);
     btnEmitirTpm.fireAllEvents(true);
     btnPagoTpm = new GButton(tIVParkingDB,0,0,50,25,
       txt.btnPago);
