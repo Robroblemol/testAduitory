@@ -3,15 +3,18 @@ class Ticket{
   private String dateInit = null;
   private String dateFinal = null;
   private boolean pay = false;
-  private int id = 0;
+  private String plate = null;
+  private int id_tiquet = 0;
 
-  Ticket(String equiEmisor,String dateInit,
-    String dateFinal,String lbPay, int id){
+  Ticket(int id_tiquet,String dateInit,
+    String dateFinal,String plate, boolean pay,
+    String equiEmisor){
       this.equiEmisor=equiEmisor;
       this.dateInit=dateInit;
       this.dateFinal=dateFinal;
       this.pay=pay;
-      this.id=id;
+      this.id_tiquet=id_tiquet;
+      this.plate = plate;
     }
   void setDateFinal(String dateFinal ) {
     this.dateFinal=dateFinal;
@@ -33,6 +36,9 @@ class Ticket{
     return pay;
   }
   int getId(){
-    return id=id;
+    return id_tiquet;
+  }
+  String getPlate(){
+    return plate;
   }
 }

@@ -6,24 +6,30 @@ Tpm tpm;
 Eentrada ent;
 Tpa tpa;
 
+
 class View implements Iview {
   //private Presenter presenter = new Presenter(this);
   private Texts txt;
   private tIVParkingDB tIVParkingDB;
+  private Presenter presenter;
+
 
   View(tIVParkingDB tIVParkingDB){
+
+    presenter = new Presenter(this,tIVParkingDB);
 
     this.tIVParkingDB = tIVParkingDB;
     txt = new Texts();
     ent = new Eentrada(tIVParkingDB);
-    tpa = new Tpa(tIVParkingDB,txt.testArray);
-    tpm = new Tpm(tIVParkingDB,txt.testArray);
+    tpa = new Tpa(tIVParkingDB,presenter.getAllTicket());
+    tpm = new Tpm(tIVParkingDB,presenter.getAllTicket());
 
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setCursor(ARROW);
     surface.setTitle(txt.titleApp);
 
   }
+  @Override
   void setTpa(Ticket t,String[] plts){
     String s = ""+t.getPay();
     tpa.setlb(lbEquEmisor,t.getEquiEmisor());
@@ -32,6 +38,7 @@ class View implements Iview {
     tpa.setlb(lbPay,s);
     tpa.setPlts(plts);
   }
+  @Override
   void setTpa(Ticket t){
     String s = ""+t.getPay();
     tpa.setlb(lbEquEmisor,t.getEquiEmisor());
@@ -39,6 +46,7 @@ class View implements Iview {
     tpa.setlb(lbDateFinal,t.getDateFinal());
     tpa.setlb(lbPay,s);
   }
+  @Override
   void setTpa(String[] plts){
     tpa.setPlts(plts);
   }

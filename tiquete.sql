@@ -25,6 +25,10 @@ CREATE TABLE IF NOT EXISTS aud_tiquets(
   PRIMARY KEY (id_reg,id_tiquet)
 );
 
+INSERT INTO tiquets (fecha_init,plate,state,e_emisor) VALUES (
+  (SELECT NOW()),'ABC123',false,'E001'
+);
+
 --defino usuarios.
 CREATE USER 'E001'@'localhost' IDENTIFIED BY '1234';
 CREATE USER 'tpa'@'localhost' IDENTIFIED BY '1234';

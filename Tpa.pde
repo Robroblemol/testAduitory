@@ -15,7 +15,7 @@ class Tpa {
   private String [] plts = null;
 
   Tpa(tIVParkingDB tIVParkingDB, String[] plts){
-    G4P.messagesEnabled(true);//false);
+    G4P.messagesEnabled(false);
     this.tIVParkingDB = tIVParkingDB;
     this.plts = plts;
     txt = new Texts();

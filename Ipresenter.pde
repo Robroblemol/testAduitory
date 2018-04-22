@@ -1,6 +1,5 @@
 interface Ipresenter{
-  void intiArrayT();
+  void initiArrayT();
   String[] getAllTicket();
   void setTpa(String t);
-
 }
