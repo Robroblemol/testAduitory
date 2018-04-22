@@ -21,9 +21,26 @@ class View implements Iview {
 
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setCursor(ARROW);
-    G4P.messagesEnabled(false);
     surface.setTitle(txt.titleApp);
 
+  }
+  void setTpa(Ticket t,String[] plts){
+    String s = ""+t.getPay();
+    tpa.setlb(lbEquEmisor,t.getEquiEmisor());
+    tpa.setlb(lbDateInit,t.getDateInit());
+    tpa.setlb(lbDateFinal,t.getDateFinal());
+    tpa.setlb(lbPay,s);
+    tpa.setPlts(plts);
+  }
+  void setTpa(Ticket t){
+    String s = ""+t.getPay();
+    tpa.setlb(lbEquEmisor,t.getEquiEmisor());
+    tpa.setlb(lbDateInit,t.getDateInit());
+    tpa.setlb(lbDateFinal,t.getDateFinal());
+    tpa.setlb(lbPay,s);
+  }
+  void setTpa(String[] plts){
+    tpa.setPlts(plts);
   }
 }
 public void handleButtonEvents(GButton button, GEvent event) {
@@ -40,6 +57,7 @@ public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpm && event == GEvent.PRESSED){
     println("btnPagoTpm");
   }
-
-
+ }
+public void handleDropListEvents(GDropList list, GEvent event) {
+  println("hicieron algo en el drop list");
  }
