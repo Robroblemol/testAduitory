@@ -5,16 +5,17 @@ GDropList selecPlate;
 GButton btnPagoTpa;
 public GLabel lbEquEmisor, lbDateInit,
   lbDateFinal, lbPay;
-//GButton btnEmitirTpa;
+GButton btnEmitirTpa;
 
 
-class Tpa{
+class Tpa {
+
   private Texts txt;
   private tIVParkingDB tIVParkingDB;
   private String [] plts = null;
 
   Tpa(tIVParkingDB tIVParkingDB, String[] plts){
-    G4P.messagesEnabled(true);//false);
+    G4P.messagesEnabled(false);//false);
     this.tIVParkingDB = tIVParkingDB;
     this.plts = plts;
     txt = new Texts();
@@ -47,22 +48,13 @@ class Tpa{
 
   }
 
-  // void setPlts(String[] plts) {
-  //   selecPlate.setItems(plts,0);
-  // }
-  // void setPlts(String[] plts,int selec) {
-  //   selecPlate.setItems(plts,selec);
-  // }
-  // void setlbEquEmisor(String lbEquEmisor){
-  //   lbEquEmisor.setText(lbEquEmisor);
-  // }
-  // void setlbDateInit(String lbDateInit){
-  //   lbDateInit.setText(lbDateInit);
-  // }
-  // void setlbDateFinal(String lbDateFinal){
-  //   lbDateFinal.setText(lbDateFinal);
-  // }
-  // void setlbPay(String lbPay){
-  //   lbPay.setText(lbPay);
-  // }
+  void setPlts(String[] plts) {
+    selecPlate.setItems(plts,0);
+  }
+  void setPlts(String[] plts,int selec) {
+    selecPlate.setItems(plts,selec);
+  }
+  void setlb(GLabel lb, String s){
+     lb.setText(s);
+   }
 }

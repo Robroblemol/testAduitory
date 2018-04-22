@@ -29,7 +29,6 @@ class View implements Iview {
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){
     println("btnPagoTpa");
-    lbPay.setText("btnPagoTpa");
+    tpa.setlb(lbDateInit,"btnPagoTpa");
   }
-
  }
