@@ -60,8 +60,13 @@ class Presenter implements Ipresenter{
       return r;
   }
   @Override
-  void setTpa(String t){
-
+  void setTpa(String plc){
+    Ticket t=null;
+    for(int i=0; i < tickets.size();i++) {
+      if(tickets.get(i).getPlate().equals(plc))
+        t=tickets.get(i);
+    }
+    v.setTpa(t);
   }
 
 }

@@ -5,13 +5,13 @@
 Tpm tpm;
 Eentrada ent;
 Tpa tpa;
+Presenter presenter;
 
 
 class View implements Iview {
   //private Presenter presenter = new Presenter(this);
   private Texts txt;
   private tIVParkingDB tIVParkingDB;
-  private Presenter presenter;
 
 
   View(tIVParkingDB tIVParkingDB){
@@ -27,6 +27,8 @@ class View implements Iview {
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setCursor(ARROW);
     surface.setTitle(txt.titleApp);
+
+    presenter.setTpa(presenter.getAllTicket()[0]);
 
   }
   @Override
@@ -54,7 +56,7 @@ class View implements Iview {
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){
     println("btnPagoTpa");
-    tpa.setlb(lbDateInit,"btnPagoTpa");
+      presenter.setTpa(selecPlate.getSelectedText());
   }
   if(button == btnEmitirTicke && event == GEvent.PRESSED){
     println("btnEmitirTicke");
@@ -68,4 +70,6 @@ public void handleButtonEvents(GButton button, GEvent event) {
  }
 public void handleDropListEvents(GDropList list, GEvent event) {
   println("hicieron algo en el drop list");
+  if(list == selecPlate)
+    presenter.setTpa(selecPlate.getSelectedText());
  }

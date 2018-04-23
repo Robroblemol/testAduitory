@@ -57,4 +57,5 @@ class Tpa {
   void setlb(GLabel lb, String s){
      lb.setText(s);
    }
+
 }
