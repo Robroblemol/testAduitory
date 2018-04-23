@@ -13,8 +13,8 @@ class Presenter implements Ipresenter{
     this.tIVParkingDB=tIVParkingDB;
     // msqlEnt = new MySQL(tIVParkingDB,txt.dir,
     //   txt.database,txt.e,txt.pass);
-    // msqlTPA = new MySQL(tIVParkingDB,txt.dir,
-    //   txt.database,txt.tpa,txt.pass);
+    msqlTPA = new MySQL(tIVParkingDB,txt.dir,
+       txt.database,txt.tpa,txt.pass);
     msqlTPM = new MySQL(tIVParkingDB,txt.dir,
       txt.database,txt.userP,txt.pass);
     initiArrayT();
@@ -61,12 +61,32 @@ class Presenter implements Ipresenter{
   }
   @Override
   void setTpa(String plc){
+    v.setTpa(searchTicket(plc));
+  }
+  @Override
+  void setPay(String plc ) {
+    //println("UPDATE tiquets SET state = true WHERE plate = "+plc );
+    if(msqlTPA.connect()){
+      msqlTPA.query("UPDATE tiquets SET state = true, fecha_end = (SELECT NOW()) WHERE plate = '"+plc+"';" );
+      setTpa(plc);
+
+    }else{
+      G4P.showMessage(tIVParkingDB, "DB no conectada",
+       "Error conexion BD",
+       G4P.ERROR );
+     }
+    //msqlTPM.next();
+    //Ticket t = null;
+    //t=searchTicket(plc);
+    //t.setPay(true);
+  }
+  Ticket searchTicket(String plc){
     Ticket t=null;
     for(int i=0; i < tickets.size();i++) {
       if(tickets.get(i).getPlate().equals(plc))
         t=tickets.get(i);
     }
-    v.setTpa(t);
+    return t;
   }
 
 }
