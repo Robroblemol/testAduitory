@@ -1,6 +1,7 @@
 import g4p_controls.*;
 GPanel pnlEnt;
 GButton btnEmitirTicke;
+GTextField edtTextPlate;
 
 class Eentrada{
   private Texts txt;
@@ -16,9 +17,13 @@ class Eentrada{
       txt.btnEmitirTicke);
     btnEmitirTicke.fireAllEvents(true);
 
+    edtTextPlate = new GTextField(tIVParkingDB,0,0,70,20);
+    edtTextPlate.setPromptText("placa");
+
     pnlEnt = new GPanel(tIVParkingDB,20,30,160, 140,
       txt.titleEnt);
-    pnlEnt.addControl(btnEmitirTicke, 30, 50);
+    pnlEnt.addControl(btnEmitirTicke, 30, 70);
+    pnlEnt.addControl(edtTextPlate, 45, 40);
     pnlEnt.setCollapsed(false);
 
   }

@@ -11,8 +11,8 @@ class Presenter implements Ipresenter{
   Presenter(View v,tIVParkingDB tIVParkingDB){
     this.v=v;
     this.tIVParkingDB=tIVParkingDB;
-    // msqlEnt = new MySQL(tIVParkingDB,txt.dir,
-    //   txt.database,txt.e,txt.pass);
+    msqlEnt = new MySQL(tIVParkingDB,txt.dir,
+      txt.database,txt.e,txt.pass);
     msqlTPA = new MySQL(tIVParkingDB,txt.dir,
        txt.database,txt.tpa,txt.pass);
     msqlTPM = new MySQL(tIVParkingDB,txt.dir,
@@ -89,4 +89,12 @@ class Presenter implements Ipresenter{
     return t;
   }
 
+  @Override
+  void createTicket(String plt, String ee ) {
+      msqlEnt.connect();
+      msqlEnt.query(
+        "INSERT INTO tiquets(fecha_init,plate,state,e_emisor) VALUES((SELECT NOW()),'"+plt+"',false,'"+ee+"');"
+        );
+      initiArrayT( );
+  }
 }

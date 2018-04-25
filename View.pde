@@ -1,4 +1,4 @@
-//import g4p_controls.*;
+import g4p_controls.*;
 
 
 
@@ -60,6 +60,7 @@ public void handleButtonEvents(GButton button, GEvent event) {
   }
   if(button == btnEmitirTicke && event == GEvent.PRESSED){
     println("btnEmitirTicke");
+    presenter.createTicket(edtTextPlate.getText(),"E001");
   }
   if(button == btnEmitirTpm && event == GEvent.PRESSED){
     println("btnEmitirTpm");
