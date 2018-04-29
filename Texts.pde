@@ -13,4 +13,6 @@ class Texts{
   String pass     = "1234";
   String database = "GBD_tiquet";
   String dir      = "localhost:3306";
+  String titleInsertDato = "Dato insertdo!";
+  String mgnInsertDato = "Se registro datos correctamente en DB";
 }

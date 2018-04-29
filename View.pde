@@ -52,6 +52,16 @@ class View implements Iview {
   void setTpa(String[] plts){
     tpa.setPlts(plts);
   }
+  @Override
+  void setTpm(String[] plts ) {
+    tpm.setPlts(plts);
+  }
+  @Override
+  void showMessageSuccefulDB( ) {
+    G4P.showMessage(tIVParkingDB, txt.mgnInsertDato,
+     txt.titleInsertDato,
+     G4P.INFO );
+  }
 }
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){

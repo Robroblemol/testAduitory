@@ -95,6 +95,7 @@ class Presenter implements Ipresenter{
       msqlEnt.query(
         "INSERT INTO tiquets(fecha_init,plate,state,e_emisor) VALUES((SELECT NOW()),'"+plt+"',false,'"+ee+"');"
         );
+      v.showMessageSuccefulDB();
       initiArrayT( );
   }
 }

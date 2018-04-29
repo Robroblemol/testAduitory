@@ -30,6 +30,11 @@ class Tpm{
     pnlTPM.addControl(btnEmitirTpm, 5, 50);
     pnlTPM.addControl(btnPagoTpm, 110, 50);
     pnlTPM.setCollapsed(false);
-
+  }
+  void setPlts(String[] plts ) {
+    selecPlateTpm.setItems(plts,0);
+  }
+  void setPlts(String[] plts, int selec ) {
+    selecPlateTpm.setItems(plts,selec);
   }
 }
