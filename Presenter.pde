@@ -65,8 +65,13 @@ class Presenter implements Ipresenter{
     v.setTpa(searchTicket(plc));
   }
   @Override
-  void setPay(String plc ) {
-    //println("UPDATE tiquets SET state = true WHERE plate = "+plc );
+  void setPay(String plc, String user ) {
+
+    Ticket t = searchTicket(plc);
+    int id_tiquet = t.getId();
+    boolean stt = t.getPay();
+    String ee = t.getEquiEmisor();
+
     if(msqlTPA.connect()){
       msqlTPA.query("UPDATE tiquets "+
       "SET state = true, "+
@@ -79,6 +84,9 @@ class Presenter implements Ipresenter{
        "Error conexion BD",
        G4P.ERROR );
      }
+     aud_tiquets(id_tiquet,
+       user,"tiquete pagado placa: "+t.getPlate()+" EE: "+ee,
+       stt,true);
   }
   Ticket searchTicket(String plc){
     Ticket t=null;
@@ -101,18 +109,27 @@ class Presenter implements Ipresenter{
       v.addItem(plt);
       initiArrayT();
       aud_tiquets(searchTicket(plt).getId(),
-        ee,"tiquete creado placa: "+plt,
+        ee,"tiquete creado placa: "+plt+"EE: "+ee,
         false,false);
 
 
   }
   @Override
-  void deleteTicket(String plt ) {
+  void deleteTicket(String plt, String user ) {
+    Ticket t = searchTicket(plt);
+    int id_tiquet = t.getId();
+    boolean stt = t.getPay();
+    String ee = t.getEquiEmisor();
+
     if(msqlTPM.connect())
     msqlTPM.query("delete from tiquets "+
     "where plate ='"+plt+"';");
+
     v.showMessageSuccefulDB();
     initiArrayT();
+    aud_tiquets(id_tiquet,
+      user,"tiquete borrado placa: "+plt+" EE: "+ee,
+      stt,stt);
   }
   void aud_tiquets(
     int id_tiquet,
@@ -122,7 +139,7 @@ class Presenter implements Ipresenter{
     boolean e_new)
   {
     if(msqlTPM.connect())
-    msqlEnt.query(
+    msqlTPM.query(
     //println(
       "INSERT INTO aud_tiquets"+
       "(id_tiquet,date_change,user,"+

@@ -74,7 +74,7 @@ class View implements Iview {
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){
     println("btnPagoTpa");
-      presenter.setPay(selecPlate.getSelectedText());
+      presenter.setPay(selecPlate.getSelectedText(),"tpa");
   }
   if(button == btnEmitirTicke && event == GEvent.PRESSED){
     println("btnEmitirTicke");
@@ -82,15 +82,15 @@ public void handleButtonEvents(GButton button, GEvent event) {
   }
   if(button == btnEmitirTpm && event == GEvent.PRESSED){
     println("btnEmitirTpm");
-    presenter.createTicket(edtTextPlateTpm.getText(),"E002");
+    presenter.createTicket(edtTextPlateTpm.getText(),"UserP");
   }
   if(button == btnPagoTpm && event == GEvent.PRESSED){
     println("btnPagoTpm");
-    presenter.setPay(selecPlateTpm.getSelectedText());
+    presenter.setPay(selecPlateTpm.getSelectedText(),"UserP");
   }
   if(button == btnDeleteTicket && event == GEvent.PRESSED){
     println("btnDeleteTicket");
-    presenter.deleteTicket(selecPlateTpm.getSelectedText());
+    presenter.deleteTicket(selecPlateTpm.getSelectedText(),"Usep");
   }
  }
 public void handleDropListEvents(GDropList list, GEvent event) {
