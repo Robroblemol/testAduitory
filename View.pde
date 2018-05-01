@@ -82,9 +82,11 @@ public void handleButtonEvents(GButton button, GEvent event) {
   }
   if(button == btnEmitirTpm && event == GEvent.PRESSED){
     println("btnEmitirTpm");
+    presenter.createTicket(edtTextPlateTpm.getText(),"E002");
   }
   if(button == btnPagoTpm && event == GEvent.PRESSED){
     println("btnPagoTpm");
+    presenter.setPay(selecPlateTpm.getSelectedText());
   }
  }
 public void handleDropListEvents(GDropList list, GEvent event) {
