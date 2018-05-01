@@ -15,4 +15,5 @@ class Texts{
   String dir      = "localhost:3306";
   String titleInsertDato = "Dato insertdo!";
   String mgnInsertDato = "Se registro datos correctamente en DB";
+  String btnDeleteTicket = "Borrar Ticket";
 }

@@ -88,6 +88,10 @@ public void handleButtonEvents(GButton button, GEvent event) {
     println("btnPagoTpm");
     presenter.setPay(selecPlateTpm.getSelectedText());
   }
+  if(button == btnDeleteTicket && event == GEvent.PRESSED){
+    println("btnDeleteTicket");
+    presenter.deleteTicket(selecPlateTpm.getSelectedText());
+  }
  }
 public void handleDropListEvents(GDropList list, GEvent event) {
   println("hicieron algo en el drop list");

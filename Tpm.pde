@@ -1,6 +1,6 @@
 import g4p_controls.*;
 GPanel pnlTPM;
-GButton btnEmitirTpm, btnPagoTpm;
+GButton btnEmitirTpm, btnPagoTpm,btnDeleteTicket;
 GDropList selecPlateTpm;
 GTextField edtTextPlateTpm;
 
@@ -28,13 +28,17 @@ class Tpm{
     btnPagoTpm = new GButton(tIVParkingDB,0,0,50,25,
       txt.btnPago);
     btnPagoTpm.fireAllEvents(true);
+    btnDeleteTicket = new GButton(tIVParkingDB,0,0,100,25,
+      txt.btnDeleteTicket);
+    btnDeleteTicket.fireAllEvents(true);
 
     pnlTPM = new GPanel(tIVParkingDB,450,30,160, 140,
       txt.titleTPM);
     pnlTPM.addControl(selecPlateTpm, 10, 20);
+    pnlTPM.addControl(btnPagoTpm, 10,40);
+    pnlTPM.addControl(btnDeleteTicket, 60,40);
     pnlTPM.addControl(edtTextPlateTpm,10,70);
     pnlTPM.addControl(btnEmitirTpm, 10, 100);
-    pnlTPM.addControl(btnPagoTpm, 10,40);
     pnlTPM.setCollapsed(false);
   }
   void setPlts(ArrayList<String> plts ) {

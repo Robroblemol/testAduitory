@@ -88,7 +88,6 @@ class Presenter implements Ipresenter{
     }
     return t;
   }
-
   @Override
   void createTicket(String plt, String ee ) {
     msqlEnt.connect();
@@ -102,5 +101,13 @@ class Presenter implements Ipresenter{
       v.addItem(plt);
       initiArrayT();
 
+  }
+  @Override
+  void deleteTicket(String plt ) {
+    if(msqlTPM.connect())
+    msqlTPM.query("delete from tiquets "+
+    "where plate ='"+plt+"';");
+    v.showMessageSuccefulDB();
+    initiArrayT();
   }
 }
