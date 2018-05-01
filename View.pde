@@ -22,17 +22,19 @@ class View implements Iview {
     txt = new Texts();
     ent = new Eentrada(tIVParkingDB);
     tpa = new Tpa(tIVParkingDB,presenter.getAllTicket());
-    tpm = new Tpm(tIVParkingDB,presenter.getAllTicket());
+    //tpm = new Tpm(tIVParkingDB,presenter.getAllTicket());
 
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setCursor(ARROW);
     surface.setTitle(txt.titleApp);
-
-    presenter.setTpa(presenter.getAllTicket()[0]);
+    //String s = presenter.getAllTicket().get(0).toString();
+    //println("View >> "+ s);
+    presenter.setTpa(presenter.getAllTicket().
+    get(0).toString());
 
   }
   @Override
-  void setTpa(Ticket t,String[] plts){
+  void setTpa(Ticket t,ArrayList<String> plts){
     String s = ""+t.getPay();
     tpa.setlb(lbEquEmisor,t.getEquiEmisor());
     tpa.setlb(lbDateInit,t.getDateInit());
@@ -49,8 +51,8 @@ class View implements Iview {
     tpa.setlb(lbPay,s);
   }
   @Override
-  void setTpa(String[] plts){
-    tpa.setPlts(plts);
+  void setTpa(String plt){
+    tpa.setPlts(plt);
   }
   @Override
   void setTpm(String[] plts ) {
@@ -61,6 +63,10 @@ class View implements Iview {
     G4P.showMessage(tIVParkingDB, txt.mgnInsertDato,
      txt.titleInsertDato,
      G4P.INFO );
+  }
+  @Override
+  void addItem(String plt) {
+    tpa.setPlts(plt);
   }
 }
 public void handleButtonEvents(GButton button, GEvent event) {

@@ -12,9 +12,9 @@ class Tpa {
 
   private Texts txt;
   private tIVParkingDB tIVParkingDB;
-  private String [] plts = null;
+  private ArrayList<String> plts = null;
 
-  Tpa(tIVParkingDB tIVParkingDB, String[] plts){
+  Tpa(tIVParkingDB tIVParkingDB, ArrayList<String> plts){
     G4P.messagesEnabled(false);
     this.tIVParkingDB = tIVParkingDB;
     this.plts = plts;
@@ -48,11 +48,14 @@ class Tpa {
 
   }
 
-  void setPlts(String[] plts) {
+  void setPlts(ArrayList<String> plts) {
     selecPlate.setItems(plts,0);
   }
-  void setPlts(String[] plts,int selec) {
-    selecPlate.setItems(plts,selec);
+  void setPlts(String plt) {
+    plts.add(plt);
+    //println("TPA >> placa:"+plt);
+    selecPlate.setItems(plts,0);
+    //selecPlate.addItem(plt);
   }
   void setlb(GLabel lb, String s){
      lb.setText(s);

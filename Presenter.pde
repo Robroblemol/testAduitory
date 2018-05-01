@@ -46,15 +46,14 @@ class Presenter implements Ipresenter{
        "Error conexion BD",
        G4P.ERROR );
     }
-
   }
 
   @Override
-  String[] getAllTicket(){
-    String[] r = new String[tickets.size()];
+  ArrayList getAllTicket(){
+    ArrayList<String> r = new ArrayList<String>();
     for(int i=0; i < tickets.size();i++) {
       //println("tiquet: "+tickets.get(i).getPlate());
-      r[i]=tickets.get(i).getPlate();
+      r.add(tickets.get(i).getPlate());
     }
     //return txt.testArray;
       return r;
@@ -75,10 +74,6 @@ class Presenter implements Ipresenter{
        "Error conexion BD",
        G4P.ERROR );
      }
-    //msqlTPM.next();
-    //Ticket t = null;
-    //t=searchTicket(plc);
-    //t.setPay(true);
   }
   Ticket searchTicket(String plc){
     Ticket t=null;
@@ -91,11 +86,15 @@ class Presenter implements Ipresenter{
 
   @Override
   void createTicket(String plt, String ee ) {
-      msqlEnt.connect();
-      msqlEnt.query(
-        "INSERT INTO tiquets(fecha_init,plate,state,e_emisor) VALUES((SELECT NOW()),'"+plt+"',false,'"+ee+"');"
+    msqlEnt.connect();
+     msqlEnt.query(
+         "INSERT INTO tiquets"+
+         "(fecha_init,plate,state,e_emisor)"+
+         " VALUES((SELECT NOW()),'"+plt+"',false,'"+ee+"');"
         );
       v.showMessageSuccefulDB();
-      initiArrayT( );
+      v.addItem(plt);
+      initiArrayT();
+
   }
 }
