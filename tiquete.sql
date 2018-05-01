@@ -48,3 +48,4 @@ GRANT INSERT ON GBD_tiquet.tiquets TO 'E001'@'localhost';
 GRANT SELECT ON GBD_tiquet.tiquets TO 'userP'@'localhost';
 GRANT UPDATE ON GBD_tiquet.tiquets TO 'userP'@'localhost';
 GRANT INSERT ON GBD_tiquet.tiquets TO 'userP'@'localhost';
+GRANT DELETE ON GBD_tiquet.tiquets TO 'userP'@'localhost';
