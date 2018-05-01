@@ -23,11 +23,13 @@ class Presenter implements Ipresenter{
   @Override
   void initiArrayT( ) {
     if(msqlTPM.connect()){
-      msqlTPM.query("SELECT COUNT(*) FROM tiquets" );
+      msqlTPM.query("SELECT COUNT(*) "+
+      "FROM tiquets" );
       msqlTPM.next();
       int l = msqlTPM.getInt(1);
       msqlTPM.query(
-        "SELECT id_tiquet,fecha_init,fecha_end, plate, state, e_emisor FROM tiquets"
+        "SELECT id_tiquet,fecha_init,fecha_end, "+
+        " plate, state, e_emisor FROM tiquets"
         );
       for(int i = 0;i < l ;i++){
         msqlTPM.next();
@@ -66,7 +68,10 @@ class Presenter implements Ipresenter{
   void setPay(String plc ) {
     //println("UPDATE tiquets SET state = true WHERE plate = "+plc );
     if(msqlTPA.connect()){
-      msqlTPA.query("UPDATE tiquets SET state = true, fecha_end = (SELECT NOW()) WHERE plate = '"+plc+"';" );
+      msqlTPA.query("UPDATE tiquets "+
+      "SET state = true, "+
+      "fecha_end = (SELECT NOW()) "+
+      "WHERE plate = '"+plc+"';" );
       setTpa(plc);
 
     }else{
