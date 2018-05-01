@@ -86,12 +86,13 @@ class Presenter implements Ipresenter{
 
   @Override
   void createTicket(String plt, String ee ) {
-    msqlEnt.connect();
-     msqlEnt.query(
-         "INSERT INTO tiquets"+
-         "(fecha_init,plate,state,e_emisor)"+
-         " VALUES((SELECT NOW()),'"+plt+"',false,'"+ee+"');"
-        );
+    // msqlEnt.connect();
+    //  msqlEnt.query(
+    //      "INSERT INTO tiquets"+
+    //      "(fecha_init,plate,state,e_emisor)"+
+    //      " VALUES((SELECT NOW()),"+
+    //      "'"+plt+"',false,'"+ee+"');"
+    //     );
       v.showMessageSuccefulDB();
       v.addItem(plt);
       initiArrayT();

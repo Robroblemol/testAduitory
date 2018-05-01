@@ -22,7 +22,7 @@ class View implements Iview {
     txt = new Texts();
     ent = new Eentrada(tIVParkingDB);
     tpa = new Tpa(tIVParkingDB,presenter.getAllTicket());
-    //tpm = new Tpm(tIVParkingDB,presenter.getAllTicket());
+    tpm = new Tpm(tIVParkingDB,presenter.getAllTicket());
 
     G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
     G4P.setCursor(ARROW);
@@ -55,8 +55,8 @@ class View implements Iview {
     tpa.setPlts(plt);
   }
   @Override
-  void setTpm(String[] plts ) {
-    tpm.setPlts(plts);
+  void setTpm(String plt ) {
+    tpm.setPlts(plt);
   }
   @Override
   void showMessageSuccefulDB( ) {
@@ -67,6 +67,8 @@ class View implements Iview {
   @Override
   void addItem(String plt) {
     tpa.setPlts(plt);
+    setTpm(plt);
+    //tpm.setPlts(plt);
   }
 }
 public void handleButtonEvents(GButton button, GEvent event) {

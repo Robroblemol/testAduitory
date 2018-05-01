@@ -7,11 +7,12 @@ GDropList selecPlateTpm;
 class Tpm{
   private Texts txt;
   private tIVParkingDB tIVParkingDB;
-  private String [] plts = null;
+  private ArrayList<String> plts = null;
 
-  Tpm(tIVParkingDB tIVParkingDB,String[] plts){
+  Tpm(tIVParkingDB tIVParkingDB,ArrayList<String> plts){
     G4P.messagesEnabled(false);
     this.tIVParkingDB = tIVParkingDB;
+    this.plts =plts; 
     txt = new Texts();
 
     selecPlateTpm = new GDropList(tIVParkingDB,0,0,120, 90, 5);
@@ -31,10 +32,11 @@ class Tpm{
     pnlTPM.addControl(btnPagoTpm, 110, 50);
     pnlTPM.setCollapsed(false);
   }
-  void setPlts(String[] plts ) {
+  void setPlts(ArrayList<String> plts ) {
     selecPlateTpm.setItems(plts,0);
   }
-  void setPlts(String[] plts, int selec ) {
-    selecPlateTpm.setItems(plts,selec);
+  void setPlts(String plt) {
+    plts.add(plt);
+    selecPlateTpm.setItems(plts,0);
   }
 }
