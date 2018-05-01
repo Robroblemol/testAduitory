@@ -38,10 +38,11 @@ CREATE USER 'userP'@'localhost' IDENTIFIED BY '1234';
 
 GRANT SELECT ON GBD_tiquet.tiquets TO 'tpa'@'localhost';
 GRANT UPDATE ON GBD_tiquet.tiquets TO 'tpa'@'localhost';
-
+GRANT INSERT ON GBD_tiquet.aud_tiquets TO 'tpa'@'localhost';
 --permisos usuario entrada
 
 GRANT INSERT ON GBD_tiquet.tiquets TO 'E001'@'localhost';
+GRANT INSERT ON GBD_tiquet.aud_tiquets TO 'E001'@'localhost';
 
 --permisos userP
 
@@ -49,3 +50,4 @@ GRANT SELECT ON GBD_tiquet.tiquets TO 'userP'@'localhost';
 GRANT UPDATE ON GBD_tiquet.tiquets TO 'userP'@'localhost';
 GRANT INSERT ON GBD_tiquet.tiquets TO 'userP'@'localhost';
 GRANT DELETE ON GBD_tiquet.tiquets TO 'userP'@'localhost';
+GRANT INSERT ON GBD_tiquet.aud_tiquets TO 'userP'@'localhost';

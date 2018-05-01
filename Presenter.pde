@@ -100,6 +100,10 @@ class Presenter implements Ipresenter{
       v.showMessageSuccefulDB();
       v.addItem(plt);
       initiArrayT();
+      aud_tiquets(searchTicket(plt).getId(),
+        ee,"tiquete creado placa: "+plt,
+        false,false);
+
 
   }
   @Override
@@ -109,5 +113,22 @@ class Presenter implements Ipresenter{
     "where plate ='"+plt+"';");
     v.showMessageSuccefulDB();
     initiArrayT();
+  }
+  void aud_tiquets(
+    int id_tiquet,
+    String u,
+    String d,
+    boolean e_ant,
+    boolean e_new)
+  {
+    if(msqlTPM.connect())
+    msqlEnt.query(
+    //println(
+      "INSERT INTO aud_tiquets"+
+      "(id_tiquet,date_change,user,"+
+      "descript,ant_state,new_state)"+
+      "VALUES("+id_tiquet+",(SELECT NOW()),'"+
+      u+"','"+d+"',"+e_ant+","+e_new+");"
+      );
   }
 }
