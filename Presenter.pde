@@ -111,8 +111,6 @@ class Presenter implements Ipresenter{
       aud_tiquets(searchTicket(plt).getId(),
         ee,"tiquete creado placa: "+plt+"EE: "+ee,
         false,false);
-
-
   }
   @Override
   void deleteTicket(String plt, String user ) {
@@ -147,5 +145,24 @@ class Presenter implements Ipresenter{
       "VALUES("+id_tiquet+",(SELECT NOW()),'"+
       u+"','"+d+"',"+e_ant+","+e_new+");"
       );
+      String log = "id_tiquet:"+id_tiquet+
+        " date_change:"+getDate()+
+        " descript:"+d+
+        " ant_state:"+e_ant+
+        " new_state:"+e_new;
+      String[]  lstLog= split(log,' ');
+      saveStrings("log.log",lstLog);
+
+  }
+  String getDate(){
+    int dd = day();
+    int mm = month();
+    int yyyy = year();
+    int h = hour();
+    int m = minute();
+    int s = second();
+    String r= ""+dd+"-"+mm+"-"+yyyy+" "+h+":"+m+":"+s;
+    println(r);
+    return r;
   }
 }
