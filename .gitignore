@@ -6,5 +6,5 @@ application.windows32
 application.windows64
 application.macosx
 .java
-.txt
+log.txt
 /build

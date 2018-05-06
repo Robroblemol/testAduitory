@@ -5,4 +5,5 @@ interface Ipresenter{
   void setTpa(String t);
   void setPay(String t,String u);
   void createTicket(String plt, String ee);
+  void saveLog();
 }

@@ -6,6 +6,7 @@ class Presenter implements Ipresenter{
   private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
   private PrintWriter log;
   private InetAddress inet;
+  private String[] loadLog = null;
   private Texts txt = new Texts();
   private View v = null;
   private tIVParkingDB tIVParkingDB;
@@ -21,7 +22,16 @@ class Presenter implements Ipresenter{
     msqlTPM = new MySQL(tIVParkingDB,txt.dir,
       txt.database,txt.userP,txt.pass);
     initiArrayT();
-    log = createWriter("log.txt");
+    File f = new File(sketchPath("log.txt"));
+    println("Presenter >> "+f.exists());
+    if(f.exists()){
+      //log = f;
+      this.loadLog=loadStrings("log.txt");
+      println("el archivo ya fue creado");
+    }else{
+      println("creando archivo log");
+      log = createWriter("log.txt");
+    }
     try{
       inet = InetAddress.getLocalHost();
     }catch (Exception e){
@@ -143,6 +153,10 @@ class Presenter implements Ipresenter{
       user,"tiquete borrado placa: "+plt+" EE: "+ee,
       stt,stt);
   }
+  @Override
+  void saveLog( ) {
+  //  log.close();
+  }
   void aud_tiquets(int id_tiquet,String u,
     String d,boolean e_ant,boolean e_new){
   if(msqlTPM.connect())
@@ -165,10 +179,9 @@ class Presenter implements Ipresenter{
         " ip: "+inet.getHostAddress()+
         " Hostname: "+inet.getHostName()+
         " OS: "+System.getProperty("os.name");
-        log.println(l);//write
-        log.flush();// confirm
-        //log.close();
-
+        //log.println(l);//write
+        setLoadLog(l);// confirm
+        saveStrings("log.txt",this.loadLog);
       }catch(Exception e){
         e.printStackTrace();
       }
@@ -183,5 +196,13 @@ class Presenter implements Ipresenter{
     String r= ""+dd+"-"+mm+"-"+yyyy+" "+h+":"+m+":"+s;
     println(r);
     return r;
+  }
+  void setLoadLog(String s) {
+    String[] l = new String[this.loadLog.length +1];
+    for(int i = 0; i < loadLog.length; i ++){
+      l[i] = loadLog[i];
+    }
+    l[loadLog.length] = s;
+    this.loadLog=l;
   }
 }
