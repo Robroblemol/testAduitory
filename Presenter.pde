@@ -71,7 +71,11 @@ class Presenter implements Ipresenter{
   }
   @Override
   void setTpa(String plc){
-    v.setTpa(searchTicket(plc));
+    Ticket t = searchTicket(plc);
+    v.setTpa(t);
+    audLog(t.getId(),"TPA","consulta "+
+      "tiquete con placa: "+t.getPlate());
+
   }
   @Override
   void setPay(String plc, String user ) {
@@ -141,7 +145,7 @@ class Presenter implements Ipresenter{
   }
   void aud_tiquets(int id_tiquet,String u,
     String d,boolean e_ant,boolean e_new){
-    if(msqlTPM.connect())
+  if(msqlTPM.connect())
     msqlTPM.query(
     //println(
       "INSERT INTO aud_tiquets"+
@@ -150,24 +154,24 @@ class Presenter implements Ipresenter{
       "VALUES("+id_tiquet+",(SELECT NOW()),'"+
       u+"','"+d+"',"+e_ant+","+e_new+");"
       );
+  }
+  void audLog(int id_tiquet,String u,
+    String d) {
       try{
         inet = InetAddress.getLocalHost();
         String l = "id_tiquet: "+id_tiquet+
         " date_change: "+getDate()+
         " descript: "+d+
-        " ant_state: "+e_ant+
-        " new_state: "+e_new+
         " ip: "+inet.getHostAddress()+
-        " Hostname: "+inet.getHostName();
+        " Hostname: "+inet.getHostName()+
+        " OS: "+System.getProperty("os.name");
         log.println(l);//write
         log.flush();// confirm
+        //log.close();
 
       }catch(Exception e){
         e.printStackTrace();
       }
-
-
-
   }
   String getDate(){
     int dd = day();

@@ -74,7 +74,7 @@ class View implements Iview {
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){
     println("btnPagoTpa");
-      presenter.setPay(selecPlate.getSelectedText(),"tpa");
+      presenter.setPay(selecPlate.getSelectedText(),"TPA");
   }
   if(button == btnEmitirTicke && event == GEvent.PRESSED){
     println("btnEmitirTicke");
