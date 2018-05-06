@@ -3,6 +3,7 @@ import java.sql.SQLException;
 
 class Presenter implements Ipresenter{
   private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+  private PrintWriter log;
   private Texts txt = new Texts();
   private View v = null;
   private tIVParkingDB tIVParkingDB;
@@ -18,6 +19,7 @@ class Presenter implements Ipresenter{
     msqlTPM = new MySQL(tIVParkingDB,txt.dir,
       txt.database,txt.userP,txt.pass);
     initiArrayT();
+    log = createWriter("log.txt");
 
   }
   @Override
@@ -98,17 +100,18 @@ class Presenter implements Ipresenter{
   }
   @Override
   void createTicket(String plt, String ee ) {
-    msqlEnt.connect();
-     msqlEnt.query(
-         "INSERT INTO tiquets"+
-         "(fecha_init,plate,state,e_emisor)"+
-         " VALUES((SELECT NOW()),"+
-         "'"+plt+"',false,'"+ee+"');"
-       );
+      msqlEnt.connect();
+       msqlEnt.query(
+           "INSERT INTO tiquets"+
+           "(fecha_init,plate,state,e_emisor)"+
+           " VALUES((SELECT NOW()),"+
+           "'"+plt+"',false,'"+ee+"');"
+         );
       v.showMessageSuccefulDB();
       v.addItem(plt);
       initiArrayT();
       aud_tiquets(searchTicket(plt).getId(),
+      //aud_tiquets(1,
         ee,"tiquete creado placa: "+plt+"EE: "+ee,
         false,false);
   }
@@ -129,13 +132,8 @@ class Presenter implements Ipresenter{
       user,"tiquete borrado placa: "+plt+" EE: "+ee,
       stt,stt);
   }
-  void aud_tiquets(
-    int id_tiquet,
-    String u,
-    String d,
-    boolean e_ant,
-    boolean e_new)
-  {
+  void aud_tiquets(int id_tiquet,String u,
+    String d,boolean e_ant,boolean e_new){
     if(msqlTPM.connect())
     msqlTPM.query(
     //println(
@@ -145,13 +143,13 @@ class Presenter implements Ipresenter{
       "VALUES("+id_tiquet+",(SELECT NOW()),'"+
       u+"','"+d+"',"+e_ant+","+e_new+");"
       );
-      String log = "id_tiquet:"+id_tiquet+
-        " date_change:"+getDate()+
-        " descript:"+d+
-        " ant_state:"+e_ant+
-        " new_state:"+e_new;
-      String[]  lstLog= split(log,' ');
-      saveStrings("log.log",lstLog);
+      String l = "id_tiquet: "+id_tiquet+
+        " date_change: "+getDate()+
+        " descript: "+d+
+        " ant_state: "+e_ant+
+        " new_state: "+e_new;
+      log.println(l);//write
+      log.flush();// confirm
 
   }
   String getDate(){
