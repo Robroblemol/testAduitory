@@ -1,9 +1,11 @@
 import de.bezier.data.sql.*;
 import java.sql.SQLException;
+import java.net.InetAddress;
 
 class Presenter implements Ipresenter{
   private ArrayList<Ticket> tickets = new ArrayList<Ticket>();
   private PrintWriter log;
+  private InetAddress inet;
   private Texts txt = new Texts();
   private View v = null;
   private tIVParkingDB tIVParkingDB;
@@ -20,6 +22,11 @@ class Presenter implements Ipresenter{
       txt.database,txt.userP,txt.pass);
     initiArrayT();
     log = createWriter("log.txt");
+    try{
+      inet = InetAddress.getLocalHost();
+    }catch (Exception e){
+      e.printStackTrace();
+    }
 
   }
   @Override
@@ -112,7 +119,7 @@ class Presenter implements Ipresenter{
       initiArrayT();
       aud_tiquets(searchTicket(plt).getId(),
       //aud_tiquets(1,
-        ee,"tiquete creado placa: "+plt+"EE: "+ee,
+        ee,"tiquete creado placa: "+plt+" EE: "+ee,
         false,false);
   }
   @Override
@@ -143,13 +150,23 @@ class Presenter implements Ipresenter{
       "VALUES("+id_tiquet+",(SELECT NOW()),'"+
       u+"','"+d+"',"+e_ant+","+e_new+");"
       );
-      String l = "id_tiquet: "+id_tiquet+
+      try{
+        inet = InetAddress.getLocalHost();
+        String l = "id_tiquet: "+id_tiquet+
         " date_change: "+getDate()+
         " descript: "+d+
         " ant_state: "+e_ant+
-        " new_state: "+e_new;
-      log.println(l);//write
-      log.flush();// confirm
+        " new_state: "+e_new+
+        " ip: "+inet.getHostAddress()+
+        " Hostname: "+inet.getHostName();
+        log.println(l);//write
+        log.flush();// confirm
+
+      }catch(Exception e){
+        e.printStackTrace();
+      }
+
+
 
   }
   String getDate(){
