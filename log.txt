@@ -1,4 +1,0 @@
-id_tiquet: 42 date_change: 6-5-2018 13:20:22 descript: consulta tiquete con placa: ABC123 ip: 127.0.1.1 Hostname: raziel-pc OS: Linux
-id_tiquet: 42 date_change: 6-5-2018 13:20:31 descript: consulta tiquete con placa: ABC123 ip: 127.0.1.1 Hostname: raziel-pc OS: Linux
-id_tiquet: 43 date_change: 6-5-2018 13:20:37 descript: consulta tiquete con placa: TST123 ip: 127.0.1.1 Hostname: raziel-pc OS: Linux
-id_tiquet: 42 date_change: 6-5-2018 13:20:41 descript: consulta tiquete con placa: ABC123 ip: 127.0.1.1 Hostname: raziel-pc OS: Linux
