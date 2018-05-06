@@ -1,2 +1,0 @@
-id_tiquet: 38 date_change: 6-5-2018 12:3:33 descript: tiquete creado placa: Hostname EE: E001 ant_state: false new_state: false ip: 127.0.1.1 Hostname: raziel-pc
-id_tiquet: 39 date_change: 6-5-2018 12:4:31 descript: tiquete creado placa: HTM1010 EE: E001 ant_state: false new_state: false ip: 127.0.1.1 Hostname: raziel-pc
