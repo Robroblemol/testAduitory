@@ -72,7 +72,7 @@ class View implements Iview {
   }
   @Override
   void saveLog() {
-    presenter.saveLog();
+
   }
 }
 public void handleButtonEvents(GButton button, GEvent event) {

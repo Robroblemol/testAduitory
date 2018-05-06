@@ -100,6 +100,7 @@ class Presenter implements Ipresenter{
       "SET state = true, "+
       "fecha_end = (SELECT NOW()) "+
       "WHERE plate = '"+plc+"';" );
+      initiArrayT();
       setTpa(plc);
 
     }else{
