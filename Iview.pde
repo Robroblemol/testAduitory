@@ -6,6 +6,5 @@ interface Iview{
   void setTpm(String plt);
   void showMessageSuccefulDB();
   void addItem(String plt );
-  void saveLog();
 
 }

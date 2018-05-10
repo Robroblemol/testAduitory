@@ -8,5 +8,5 @@ void draw( ) {
   background(0);
 }
 void close( ) {
-  v.saveLog();
+
 }

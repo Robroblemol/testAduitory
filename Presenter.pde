@@ -9,6 +9,8 @@ class Presenter implements Ipresenter{
   private String[] loadLog = null;
   private Texts txt = new Texts();
   private View v = null;
+  private Crypter crypter = new Crypter();
+
   private tIVParkingDB tIVParkingDB;
   MySQL msqlEnt, msqlTPA, msqlTPM;
 
@@ -84,7 +86,7 @@ class Presenter implements Ipresenter{
     Ticket t = searchTicket(plc);
     v.setTpa(t);
     audLog(t.getId(),"TPA","consulta "+
-      "tiquete con placa: "+t.getPlate());
+      "tiquete con placa: "+t.getPlate(),false);
 
   }
   @Override
@@ -111,6 +113,8 @@ class Presenter implements Ipresenter{
      aud_tiquets(id_tiquet,
        user,"tiquete pagado placa: "+t.getPlate()+" EE: "+ee,
        stt,true);
+    audLog(id_tiquet,user
+     ,"tiquete pagado placa: "+t.getPlate(),true);
   }
   Ticket searchTicket(String plc){
     Ticket t=null;
@@ -154,10 +158,6 @@ class Presenter implements Ipresenter{
       user,"tiquete borrado placa: "+plt+" EE: "+ee,
       stt,stt);
   }
-  @Override
-  void saveLog( ) {
-  //  log.close();
-  }
   void aud_tiquets(int id_tiquet,String u,
     String d,boolean e_ant,boolean e_new){
   if(msqlTPM.connect())
@@ -171,7 +171,7 @@ class Presenter implements Ipresenter{
       );
   }
   void audLog(int id_tiquet,String u,
-    String d) {
+    String d,boolean encry) {
       try{
         inet = InetAddress.getLocalHost();
         String l = "id_tiquet: "+id_tiquet+
@@ -181,7 +181,10 @@ class Presenter implements Ipresenter{
         " Hostname: "+inet.getHostName()+
         " OS: "+System.getProperty("os.name");
         //log.println(l);//write
-        setLoadLog(l);// confirm
+        if(encry)
+          setLoadLog(crypter.logEncrypter(l));
+        else
+          setLoadLog(l);// confirm
         saveStrings("log.txt",this.loadLog);
       }catch(Exception e){
         e.printStackTrace();

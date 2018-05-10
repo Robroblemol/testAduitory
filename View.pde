@@ -70,10 +70,6 @@ class View implements Iview {
     setTpm(plt);
     //tpm.setPlts(plt);
   }
-  @Override
-  void saveLog() {
-
-  }
 }
 public void handleButtonEvents(GButton button, GEvent event) {
   if(button == btnPagoTpa && event == GEvent.PRESSED){
